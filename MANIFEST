@@ -1,0 +1,5 @@
+bin/rarbg-downloader
+bin/rt_magnet_handler
+LICENSE
+Makefile.PL
+README.md

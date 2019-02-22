@@ -1,3 +1,6 @@
+This is a fork of RARBG-Downloader that converts the magnet url to a
+torrent file so that rtorrent can autoload it in its watch directory.
+
 # RARBG-Downloader
 Search and download torrent on RARBG because CLI is faster than GUI.
 

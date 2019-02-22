@@ -1,6 +1,9 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
+use vars qw($VERSION);
+
+$VERSION = '0.01';
 
 use Error qw(:try :warndie);
 use Sys::Syslog qw(:standard :macros);
@@ -14,6 +17,8 @@ my $DEFAULT_LIMIT_RESULT = 25;
 my $DEFAULT_RANKED = 0; # Find all
 my $DEFAULT_DOWNLOAD_ALL_RESULTS = 0;
 my $DEBUG = 0;
+
+help() unless @ARGV;
 
 sub help {
     print "RARBG-Downloader - Search and download torrent on RARBBG\n";
@@ -117,10 +122,12 @@ sub download_torrent {
     my $download_path = shift;
     my $torrent = shift;
 
-    my $torrentname = $torrent->title;
-    my $filename = "$torrentname.magnet";
-    throw Error::Simple("Unable to write the file '$filename'") unless open(my $magnet_file, ">",
-        "$download_path/$filename");
-    print($magnet_file $torrent->download);
-    close($magnet_file);
+    system('rt_magnet_handler', $torrent->download);
+
+#    my $torrentname = $torrent->title;
+#    my $filename = "$torrentname.magnet";
+#    throw Error::Simple("Unable to write the file '$filename'") unless open(my $magnet_file, ">",
+#        "$download_path/$filename");
+#    print($magnet_file $torrent->download);
+#    close($magnet_file);
 }

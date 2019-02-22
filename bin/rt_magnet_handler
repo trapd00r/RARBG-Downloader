@@ -1,0 +1,7 @@
+#!/bin/bash
+# vim: ft=sh:
+
+watch_folder=~/Downloads/_torrent_music/
+cd $watch_folder || exit 1
+[[ "$1" =~ xt=urn:btih:([^&/]+) ]] || exit;
+echo "d10:magnet-uri${#1}:${1}e" >> "meta-${BASH_REMATCH[1]}.torrent"
